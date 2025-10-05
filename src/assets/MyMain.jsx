@@ -1,26 +1,56 @@
 import { useState } from "react"
 
 function MyMain() {
+    const postLink = 'https://**67c5b4f3351c081993fb1ab6**.mockapi.io**/api**/posts'
+    const [formData, setFormData] = useState({
+        author: '',
+        title: '',
+        body: '',
+        public: false
+    })
 
-    const [formData, setFormData] = useState([])
-
+    function handleFormData(e) {
+        setFormData(
+            if () {
+                
+            } else {
+                {...formData, [e.target.name]: e.target.value};
+            }
+        
+    }
+    function formSubmit(e) {
+        e.preventDefault()
+        console.log(formData)
+    }
+    
     return (
         <main>
             <div className="container">
-                <form>
+                <form onSubmit={formSubmit}>
+                    {/* author */}
                     <div className="mb-3">
-                        <label className="form-label">Email address</label>
-                        <input type="name" className="form-control" />
+                        <label className="form-label">Autore</label>
+                        <input type="text" name="author" value={formData.author} onChange={handleFormData} className="form-control" required/>
                     </div>
+
+                    {/* title */}
                     <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input type="name" className="form-control" />
+                        <label className="form-label">Titolo</label>
+                        <input type="text" name="title" value={formData.title} onChange={handleFormData} className="form-control" required/>
                     </div>
+
+                    {/* body */}
+                    <div className="mb-3">
+                        <label className="form-label">Testo</label>
+                        <textarea type="text"name="body" value={formData.body} onChange={handleFormData} className="form-control" rows='3' required></textarea>  
+                    </div>
+
+                    {/* public */}
                     <div className="mb-3 form-check">
-                        <input type="radio" className="form-check-input" />
-                        <label className="form-check-label" >Check me out</label>
+                        <input type="checkbox" name="public" value={formData.public} onChange={handleFormData} className="form-check-input" required/>
+                        <label className="form-check-label" >Post pubblico</label>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Invia</button>
                 </form>
             </div>
         </main>
