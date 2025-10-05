@@ -11,18 +11,18 @@ function MyMain() {
 
     function handleFormData(e) {
         const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
         setFormData({ ...formData, [e.target.name]: value });
-
-
     }
+
     function formSubmit(e) {
         e.preventDefault()
         console.log(formData)
         axios.post(postLink, formData)
             .then(res => console.log("dati inviati", res.data))
+            .then(() => alert('il post é stato inviato con successo :D'))
             .catch(error => console.log(error))
     }
+
     return (
         <main>
             <div className="container">
