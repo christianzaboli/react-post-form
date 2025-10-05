@@ -10,19 +10,17 @@ function MyMain() {
     })
 
     function handleFormData(e) {
-        setFormData(
-            if () {
-                
-            } else {
-                {...formData, [e.target.name]: e.target.value};
-            }
-        
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+        setFormData({ ...formData, [e.target.name]: value });
+
+
     }
     function formSubmit(e) {
         e.preventDefault()
         console.log(formData)
     }
-    
+
     return (
         <main>
             <div className="container">
@@ -30,24 +28,24 @@ function MyMain() {
                     {/* author */}
                     <div className="mb-3">
                         <label className="form-label">Autore</label>
-                        <input type="text" name="author" value={formData.author} onChange={handleFormData} className="form-control" required/>
+                        <input type="text" name="author" value={formData.author} onChange={handleFormData} className="form-control" required />
                     </div>
 
                     {/* title */}
                     <div className="mb-3">
                         <label className="form-label">Titolo</label>
-                        <input type="text" name="title" value={formData.title} onChange={handleFormData} className="form-control" required/>
+                        <input type="text" name="title" value={formData.title} onChange={handleFormData} className="form-control" required />
                     </div>
 
                     {/* body */}
                     <div className="mb-3">
                         <label className="form-label">Testo</label>
-                        <textarea type="text"name="body" value={formData.body} onChange={handleFormData} className="form-control" rows='3' required></textarea>  
+                        <textarea type="text" name="body" value={formData.body} onChange={handleFormData} className="form-control" rows='3' required></textarea>
                     </div>
 
                     {/* public */}
                     <div className="mb-3 form-check">
-                        <input type="checkbox" name="public" value={formData.public} onChange={handleFormData} className="form-check-input" required/>
+                        <input type="checkbox" name="public" checked={formData.public} onChange={handleFormData} className="form-check-input" required />
                         <label className="form-check-label" >Post pubblico</label>
                     </div>
                     <button type="submit" className="btn btn-primary">Invia</button>
