@@ -1,32 +1,37 @@
 import { useState } from "react"
 
 function MyMain() {
-    const postLink = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts'
+    const postLink = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts';
     const [formData, setFormData] = useState({
         author: '',
         title: '',
         body: '',
         public: false
-    })
+    });
 
     function handleFormData(e) {
         const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
         setFormData({ ...formData, [e.target.name]: value });
-    }
+    };
 
     function formSubmit(e) {
         e.preventDefault()
         console.log(formData)
         axios.post(postLink, formData)
-            .then(res => console.log("dati inviati", res.data))
-            .then(() => alert('il post é stato inviato con successo :D'))
+            .then(
+                res => console.log("dati inviati", res.data),
+                classSuccess = 'd-inline-block',
+                console.log(classSuccess)
+            )
             .catch(error => console.log(error))
-    }
+    };
+
+    let classSuccess = '';
 
     return (
         <main>
-            <div className="container">
-                <form onSubmit={formSubmit}>
+            <div className="container mt-5">
+                <form onSubmit={formSubmit} className="bg-light p-3 shadow rounded-3">
                     {/* author */}
                     <div className="mb-3">
                         <label className="form-label">Autore</label>
@@ -52,6 +57,7 @@ function MyMain() {
                     </div>
                     <button type="submit" className="btn btn-primary">Invia</button>
                 </form>
+                <p className={`bg-success p-2 d-none mt-3 text-white ${classSuccess}`} id="form-sent">Inviato con successo</p>
             </div>
         </main>
     )
